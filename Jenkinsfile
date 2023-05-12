@@ -22,13 +22,7 @@ pipeline {
             }
         }
         stage('Test phase') {
-        steps {
-                withChecks('MyCheck') {
-                    script {
-                        echo "Hurray! I'm running!"
-                    }
-                }
-            }
+            publishChecks(name: 'Stage reporter', status: 'success', summary: 'Yoohoo! All tests passed!')
         }
     }
 }
