@@ -22,7 +22,9 @@ pipeline {
             }
         }
         stage('Test phase') {
-            publishChecks(name: 'Stage reporter', status: 'success', summary: 'Yoohoo! All tests passed!')
+            steps{
+                publishChecks(name: 'Stage reporter', conclusion: 'success', summary: 'Yoohoo! All tests passed!')
+            }
         }
     }
 }
