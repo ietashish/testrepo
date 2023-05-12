@@ -1,0 +1,34 @@
+pipeline {
+    options {
+        disableConcurrentBuilds()
+    }
+    agent any
+
+    environment {
+        STACK_SET_NAME = 'GlobalResources'
+    }
+    stages {
+        stage('Get branch specific settings') {
+            steps {
+                script {
+                    try {
+                        echo "Getting branch specific settings"
+
+                    } catch (Exception e) {
+                        echo "Some error occurred: " + e.toString()
+                        throw e
+                    }
+                }
+            }
+        }
+        stage('Test phase') {
+        steps {
+                withChecks('MyCheck') {
+                    script {
+                        echo "Hurray! I'm running!"
+                    }
+                }
+            }
+        }
+    }
+}
