@@ -22,7 +22,13 @@ pipeline {
             }
         }
         stage('Test phase') {
-            publishChecks(name: 'Stage reporter', status: 'success', summary: 'Yoohoo! All tests passed!')
+            steps{
+                publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline',
+    text: 'you can publish checks in pipeline script',
+    detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usage',
+    actions: [[label:'an-user-request-action', description:'actions allow users to', identifier:'an unique identifier']]
+
+            }
         }
     }
 }
